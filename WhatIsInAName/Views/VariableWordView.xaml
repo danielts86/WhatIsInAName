@@ -4,61 +4,92 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:behaviors="clr-namespace:WhatIsInAName.Behaviors"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="100">
+             d:DesignHeight="100" d:DesignWidth="200">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.LightBlue.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel Orientation="Horizontal">
-        <Button Height="20"
-                Width="20"
-                Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                Command="{Binding SaveComand}"
-                materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
-                materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}"
-                behaviors:FocusBehavior.IsFocused="{Binding IsPrevButtonFocused}">
-            <materialDesign:PackIcon
-                            Height="15"
-                            Width="15">
-                <materialDesign:PackIcon.Style>
-                    <Style TargetType="materialDesign:PackIcon"
-                                    BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                        <Setter Property="Kind" Value="ChevronLeft" />
-                    </Style>
-                </materialDesign:PackIcon.Style>
-            </materialDesign:PackIcon>
-        </Button>
+    <StackPanel Orientation="Vertical"
+                HorizontalAlignment="Left">
+        <Grid HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition MinWidth="100"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
 
-        <TextBox IsReadOnly="True"
-                 Text="fsdfdsf"
-                 Margin="2 0 0 0"
-                 VerticalAlignment="Center" />
-                   
-        <Button Height="20"
+            <Button Grid.Column="0"
+                Height="20"
                 Width="20"
                 Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                Command="{Binding SaveComand}"
+                Command="{Binding PrevCommand}"
                 materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
                 materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}"
-                behaviors:FocusBehavior.IsFocused="{Binding IsNextButtonFocused}">
-            <materialDesign:PackIcon
+                IsEnabled="{Binding IsHasPrev}">
+                <materialDesign:PackIcon
                             Height="15"
                             Width="15">
-                <materialDesign:PackIcon.Style>
-                    <Style TargetType="materialDesign:PackIcon"
-                                    BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                        <Setter Property="Kind" Value="ChevronRight" />
+                    <materialDesign:PackIcon.Style>
+                        <Style TargetType="materialDesign:PackIcon"
+                               BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
+                            <Setter Property="Kind" Value="ChevronLeft" />
+                        </Style>
+                    </materialDesign:PackIcon.Style>
+                </materialDesign:PackIcon>
+            </Button>
+
+            <TextBlock Grid.Column="1"
+                       Focusable="True"
+                       Text="{Binding Current.Value, Mode=OneWay}"
+                       Margin="5"
+                       VerticalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock" >
+                        <Style.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="Blue"></Setter>
+                                <Setter Property="FontSize" Value="18"></Setter>
+                                <Setter Property="Foreground" Value="Orange"></Setter>
+                            </Trigger>
+
+                            <DataTrigger Binding="{Binding IsFocused}" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </DataTrigger>
+
+                        </Style.Triggers>
                     </Style>
-                </materialDesign:PackIcon.Style>
-            </materialDesign:PackIcon>
-        </Button>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <Button Grid.Column="2"
+                    Height="20"
+                    Width="20"
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    Command="{Binding NextCommand}"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
+                    materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}"
+                    IsEnabled="{Binding IsHasNext}">
+                <materialDesign:PackIcon
+                            Height="15"
+                            Width="15">
+                    <materialDesign:PackIcon.Style>
+                        <Style TargetType="materialDesign:PackIcon"
+                               BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
+                            <Setter Property="Kind" Value="ChevronRight" />
+                        </Style>
+                    </materialDesign:PackIcon.Style>
+                </materialDesign:PackIcon>
+            </Button>
+        </Grid>
+
+        <!--<materialDesign:Underline 
+                                  IsActive="{Binding IsFocused}"/>-->
     </StackPanel>
 </UserControl>

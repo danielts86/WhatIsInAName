@@ -20,8 +20,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.LightBlue.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -73,42 +72,9 @@
                 </Button>
             </Grid>
             <StackPanel Orientation="Horizontal">
+                <Views:VariableView />
 
-                <Views:VariableWordView />
 
-                <!--<Button 
-                     Height="20"
-                            Width="20"
-                        Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                        Command="{Binding SaveComand}"
-                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
-                        materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}">
-                    --><!-- simple example of toggling/animating pack icon with a data trigger--><!--
-                    <materialDesign:PackIcon
-                            Height="15"
-                            Width="15">
-                        <materialDesign:PackIcon.Style>
-                            <Style TargetType="materialDesign:PackIcon"
-                                    BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                                <Setter Property="Kind" Value="ChevronLeft" />
-                            </Style>
-                        </materialDesign:PackIcon.Style>
-                    </materialDesign:PackIcon>
-                </Button>
-
-                <TextBox
-                    IsReadOnly="True"
-                    Text="fsdfdsf"
-                    Margin="2 0 0 0"
-                    VerticalAlignment="Bottom" />
-
-                <TextBox
-                    IsReadOnly="True"
-                    Text="fsdfdsf"
-                    Margin="8 0 0 0"
-                    VerticalAlignment="Bottom" />-->
-                
-                
             </StackPanel>
         </StackPanel>
     </Grid>
