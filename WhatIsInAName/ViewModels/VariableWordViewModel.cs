@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using System.Linq;
 using WhatIsInAName.Infrastructure.Models;
 
 namespace WhatIsInAName.ViewModels
@@ -10,7 +11,17 @@ namespace WhatIsInAName.ViewModels
         {
             _variableWord = variableWord;
 
-            Value = _variableWord.Word.Value;
+            Value = _variableWord.Word.SingularValue;
+
+            var synonyms = variableWord.Word.Synonyms;
+            if (synonyms == null)
+            {
+                Synonyms = new SynonymsViewModel();
+            }
+            else
+            {
+                Synonyms = new SynonymsViewModel(synonyms.Select(s => new SynonymViewModel(s)));
+            }
         }
 
         private string _value;
@@ -26,5 +37,7 @@ namespace WhatIsInAName.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public SynonymsViewModel Synonyms { get; set; }
     }
 }

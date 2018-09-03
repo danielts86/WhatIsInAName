@@ -25,7 +25,6 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-
         <StackPanel Orientation="Vertical">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -33,16 +32,16 @@
                     <ColumnDefinition Width="71.5" />
                 </Grid.ColumnDefinitions>
                 <TextBox    Grid.Column="0"
+                            Text="{Binding UserSearch}"
                             Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
                             VerticalAlignment="Top"
                             TextWrapping="Wrap"
                             materialDesign:HintAssist.Hint="Variable" />
                 <Button Grid.Column="1"
                         Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                        Command="{Binding SaveComand}"
+                        Command="{Binding SearchCommand}"
                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
                         materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}">
-                    <!-- simple example of toggling/animating pack icon with a data trigger-->
                     <materialDesign:PackIcon
                             Height="32"
                             Width="32">
@@ -72,9 +71,7 @@
                 </Button>
             </Grid>
             <StackPanel Orientation="Horizontal">
-                <Views:VariableView />
-
-
+                <Views:VariableView DataContext="{Binding Variable}" />
             </StackPanel>
         </StackPanel>
     </Grid>

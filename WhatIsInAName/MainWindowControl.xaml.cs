@@ -13,7 +13,7 @@
             var m = new MainViewModel();
 
             var v = new VariableViewModel();
-            DataContext = v;
+            DataContext = m;
         }
 
         /// <summary>

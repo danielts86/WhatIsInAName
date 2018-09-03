@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ManualAssemblyResolver.cs" />
+    <Compile Include="Models\Synonym.cs" />
     <Compile Include="Models\VariableWord.cs" />
     <Compile Include="Models\VariableWordNavigation.cs" />
     <Compile Include="Models\Word.cs" />

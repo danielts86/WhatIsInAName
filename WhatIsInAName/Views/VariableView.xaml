@@ -6,35 +6,37 @@
              xmlns:local="clr-namespace:WhatIsInAName.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
+             HorizontalAlignment="Stretch"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.LightBlue.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <ListView HorizontalAlignment="Left"   
-             VerticalAlignment="Top"
-             ItemsSource="{Binding VariableWordNavigations, Mode=OneWay}"
+    <StackPanel Orientation="Vertical"
+                HorizontalAlignment="Stretch">
+        <ListView HorizontalAlignment="Stretch"   
+              VerticalAlignment="Top"
+              ItemsSource="{Binding VariableWordNavigations, Mode=OneWay}"
               SelectedItem="{Binding SelectedItem}">
-        <ListView.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel />
-            </ItemsPanelTemplate>
-        </ListView.ItemsPanel>
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <StackPanel Orientation="Vertical">
-                    <local:VariableWordView />
-                    <materialDesign:Underline 
-                                  IsActive="{Binding IsSelected}"/>
-                </StackPanel>
-
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <local:VariableWordView />
+                        <materialDesign:Underline IsActive="{Binding IsSelected}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <local:SynonymsView DataContext="{Binding SelectedItem.Current.Synonyms}"/>
+    </StackPanel>
 </UserControl>

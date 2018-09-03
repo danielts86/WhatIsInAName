@@ -69,9 +69,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SynonymsViewModel.cs" />
+    <Compile Include="ViewModels\SynonymViewModel.cs" />
     <Compile Include="ViewModels\VariableViewModel.cs" />
     <Compile Include="ViewModels\VariableWordNavigationViewModel.cs" />
     <Compile Include="ViewModels\VariableWordViewModel.cs" />
+    <Compile Include="Views\SynonymsView.xaml.cs">
+      <DependentUpon>SynonymsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VariableView.xaml.cs">
       <DependentUpon>VariableView.xaml</DependentUpon>
     </Compile>
@@ -234,6 +239,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SynonymsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,7 +21,7 @@
             VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25"/>
-                <ColumnDefinition MinWidth="100"/>
+                <ColumnDefinition MinWidth="80"/>
                 <ColumnDefinition Width="25"/>
             </Grid.ColumnDefinitions>
 
@@ -48,7 +48,7 @@
             <TextBlock Grid.Column="1"
                        Focusable="True"
                        Text="{Binding Current.Value, Mode=OneWay}"
-                       Margin="5"
+                       Margin="2"
                        VerticalAlignment="Center">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock" >
