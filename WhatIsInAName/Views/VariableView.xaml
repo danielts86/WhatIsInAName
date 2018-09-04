@@ -29,6 +29,11 @@
                     <Setter Property="Visibility" Value="Collapsed" />
                 </Style>
             </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="materialDesign:RippleAssist.IsDisabled" Value="True"/>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
@@ -37,8 +42,32 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
-                        <local:VariableWordView />
-                        <materialDesign:Underline IsActive="{Binding IsSelected}"/>
+                        <local:VariableWordView Margin="0 5 0 0" />
+                        
+                        <materialDesign:Underline Margin="0 5 0 0">
+                            <materialDesign:Underline.Style>
+                                <Style TargetType="{x:Type materialDesign:Underline}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                            <DataTrigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <BooleanAnimationUsingKeyFrames 
+                                                            Storyboard.TargetProperty="IsActive" 
+                                                            Duration="0:0:1" 
+                                                            FillBehavior="HoldEnd">
+                                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
+                                                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:1" />
+                                                        </BooleanAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.EnterActions>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </materialDesign:Underline.Style>
+                        </materialDesign:Underline>
+
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
