@@ -24,55 +24,61 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <StackPanel Orientation="Vertical">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="71.5" />
-                </Grid.ColumnDefinitions>
-                <TextBox    Grid.Column="0"
-                            Text="{Binding UserSearch}"
-                            Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
-                            VerticalAlignment="Top"
-                            TextWrapping="Wrap"
-                            materialDesign:HintAssist.Hint="Variable" />
-                <Button Grid.Column="1"
-                        Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                        Command="{Binding SearchCommand}"
-                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
-                        materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}">
-                    <materialDesign:PackIcon
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="71.5" />
+            </Grid.ColumnDefinitions>
+            <TextBox    Grid.Column="0"
+                        Text="{Binding UserSearch}"
+                        Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                        VerticalAlignment="Top"
+                        TextWrapping="Wrap"
+                        materialDesign:HintAssist.Hint="Variable" />
+            <Button Grid.Column="1"
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                    Command="{Binding SearchCommand}"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
+                    materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}">
+                <materialDesign:PackIcon
                             Height="32"
                             Width="32">
-                        <materialDesign:PackIcon.Style>
-                            <Style TargetType="materialDesign:PackIcon"
+                    <materialDesign:PackIcon.Style>
+                        <Style TargetType="materialDesign:PackIcon"
                                     BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                                <Setter Property="Kind" Value="magnify" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsSaveComplete}" Value="True">
-                                        <Setter Property="Kind" Value="Check" />
-                                        <DataTrigger.EnterActions>
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <DoubleAnimation
+                            <Setter Property="Kind" Value="magnify" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSaveComplete}" Value="True">
+                                    <Setter Property="Kind" Value="Check" />
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation
                                                         Storyboard.TargetProperty="Opacity"
                                                         From="0"
                                                         To="1"
                                                         Duration="0:0:0.8" />
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </DataTrigger.EnterActions>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </materialDesign:PackIcon.Style>
-                    </materialDesign:PackIcon>
-                </Button>
-            </Grid>
-            <StackPanel Orientation="Horizontal">
-                <Views:VariableView DataContext="{Binding Variable}" />
-            </StackPanel>
-        </StackPanel>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </materialDesign:PackIcon.Style>
+                </materialDesign:PackIcon>
+            </Button>
+        </Grid>
+
+        <Views:VariableView Grid.Row="1"
+                            DataContext="{Binding Variable}" 
+                            Width="{Binding ActualWidth, ElementName=MainGrid}" />
+
     </Grid>
 </UserControl>

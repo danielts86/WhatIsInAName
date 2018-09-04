@@ -16,7 +16,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <ListView ItemsSource="{Binding Synonyms}" >
+    <ListView ItemsSource="{Binding Synonyms}" 
+              ScrollViewer.CanContentScroll="False"
+              ScrollViewer.VerticalScrollBarVisibility="Auto">
         <ListView.Resources>
             <Style TargetType="GridViewColumnHeader">
                 <Setter Property="Visibility" Value="Collapsed" />
@@ -30,13 +32,6 @@
                            ItemHeight="{Binding (ListView.View).ItemHeight, RelativeSource={RelativeSource AncestorType=ListView}}" />
             </ItemsPanelTemplate>
         </ListView.ItemsPanel>
-        <ListView.View>
-            <GridView>
-                <GridView.Columns>
-                    <GridViewColumn DisplayMemberBinding="{Binding Value}" />
-                </GridView.Columns>
-            </GridView>
-        </ListView.View>
         <ListView.ItemContainerStyle>
             <Style TargetType="{x:Type ListViewItem}">
                 <Setter Property="Template">
@@ -47,17 +42,6 @@
                                 Background="Transparent"
                                 Padding="5">
                                 <Grid>
-                                    <!--<GridViewRowPresenter HorizontalAlignment="Left" 
-                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                                      Width="Auto" 
-                                                      Margin="0" />-->
-                                    <!--<Label HorizontalAlignment="Left" 
-                                       DataContext="{TemplateBinding DataContext}"
-                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                       Width="Auto" 
-                                       Margin="0" 
-                                       Background="{Binding BackgroundColor}"
-                                       Content="{Binding Value}"/>-->
                                     <materialDesign:Card
                                             HorizontalAlignment="Left" 
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"

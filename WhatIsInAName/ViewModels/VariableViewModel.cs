@@ -48,6 +48,8 @@ namespace WhatIsInAName.ViewModels
 
             VariableWordNavigations.Add(navigation);
             VariableWordNavigations.Add(navigation1);
+
+            SelectedItem = VariableWordNavigations[0];
         }
 
         public ObservableCollection<VariableWordNavigationViewModel> VariableWordNavigations { get; set; }

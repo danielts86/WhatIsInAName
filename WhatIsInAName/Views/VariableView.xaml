@@ -17,12 +17,18 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel Orientation="Vertical"
-                HorizontalAlignment="Stretch">
-        <ListView HorizontalAlignment="Stretch"   
+    <DockPanel>
+        <ListView
+            DockPanel.Dock="Top"
               VerticalAlignment="Top"
               ItemsSource="{Binding VariableWordNavigations, Mode=OneWay}"
-              SelectedItem="{Binding SelectedItem}">
+              SelectedItem="{Binding SelectedItem}"
+              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.Resources>
+                <Style TargetType="GridViewColumnHeader">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </ListView.Resources>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
@@ -37,6 +43,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <local:SynonymsView DataContext="{Binding SelectedItem.Current.Synonyms}"/>
-    </StackPanel>
+        <local:SynonymsView 
+            DockPanel.Dock="Bottom"
+            DataContext="{Binding SelectedItem.Current.Synonyms}"/>
+    </DockPanel>
 </UserControl>

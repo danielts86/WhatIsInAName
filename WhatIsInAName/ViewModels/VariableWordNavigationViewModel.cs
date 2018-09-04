@@ -25,14 +25,10 @@ namespace WhatIsInAName.ViewModels
         private VariableWordViewModel _current;
         public VariableWordViewModel Current
         {
-            get
-            {
-                return _current;
-            }
+            get => _current;
             set
             {
                 _current = value;
-
                 RaisePropertyChanged();
             }
         }
@@ -44,10 +40,7 @@ namespace WhatIsInAName.ViewModels
         private bool _isHasPrev;
         public bool IsHasPrev
         {
-            get
-            {
-                return _isHasPrev;
-            }
+            get => _isHasPrev;
             set
             {
                 _isHasPrev = value;
@@ -58,10 +51,7 @@ namespace WhatIsInAName.ViewModels
         private bool _isHasNext;
         public bool IsHasNext
         {
-            get
-            {
-                return _isHasNext;
-            }
+            get => _isHasNext;
             set
             {
                 _isHasNext = value;

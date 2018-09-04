@@ -7,6 +7,7 @@ namespace WhatIsInAName.ViewModels
     public class VariableWordViewModel : ViewModelBase
     {
         private VariableWord _variableWord;
+
         public VariableWordViewModel(VariableWord variableWord)
         {
             _variableWord = variableWord;
