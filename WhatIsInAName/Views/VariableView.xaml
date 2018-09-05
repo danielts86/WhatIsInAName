@@ -17,63 +17,97 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <DockPanel>
-        <ListView
-            DockPanel.Dock="Top"
-              VerticalAlignment="Top"
-              ItemsSource="{Binding VariableWordNavigations, Mode=OneWay}"
-              SelectedItem="{Binding SelectedItem}"
-              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListView.Resources>
-                <Style TargetType="GridViewColumnHeader">
-                    <Setter Property="Visibility" Value="Collapsed" />
-                </Style>
-            </ListView.Resources>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="materialDesign:RippleAssist.IsDisabled" Value="True"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemsPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ItemsControl Grid.Row="0"
+                      ItemsSource="{Binding VariableWords.Items}">
+            <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
                 </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <local:VariableWordView Margin="0 5 0 0" />
-                        
-                        <materialDesign:Underline Margin="0 5 0 0">
-                            <materialDesign:Underline.Style>
-                                <Style TargetType="{x:Type materialDesign:Underline}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                            <DataTrigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <BooleanAnimationUsingKeyFrames 
-                                                            Storyboard.TargetProperty="IsActive" 
-                                                            Duration="0:0:1" 
-                                                            FillBehavior="HoldEnd">
-                                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
-                                                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:1" />
-                                                        </BooleanAnimationUsingKeyFrames>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.EnterActions>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </materialDesign:Underline.Style>
-                        </materialDesign:Underline>
-
-                    </StackPanel>
+                    <TextBlock Text="{Binding Value}"
+                               Margin="2,0,0,0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                        <DataTrigger.Setters>
+                                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                                        </DataTrigger.Setters>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <local:SynonymsView 
-            DockPanel.Dock="Bottom"
-            DataContext="{Binding SelectedItem.Current.Synonyms}"/>
-    </DockPanel>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <DockPanel Grid.Row="1">
+            <ListView
+                  DockPanel.Dock="Top"
+                  VerticalAlignment="Top"
+                  ItemsSource="{Binding VariableWordNavigations.Items, Mode=OneWay}"
+                  SelectedItem="{Binding VariableWordNavigations.SelectedItem}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="materialDesign:RippleAssist.IsDisabled" Value="True"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <local:VariableWordView Margin="0 5 0 0" />
+
+                            <materialDesign:Underline Margin="0 5 0 0">
+                                <materialDesign:Underline.Style>
+                                    <Style TargetType="{x:Type materialDesign:Underline}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                <DataTrigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <BooleanAnimationUsingKeyFrames 
+                                                                Storyboard.TargetProperty="IsActive" 
+                                                                Duration="0:0:1" 
+                                                                FillBehavior="HoldEnd">
+                                                                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
+                                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:1" />
+                                                            </BooleanAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </DataTrigger.EnterActions>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </materialDesign:Underline.Style>
+                            </materialDesign:Underline>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <local:SynonymsView 
+                DockPanel.Dock="Bottom"
+                DataContext="{Binding VariableWordNavigations.SelectedItem.Current.Synonyms}"/>
+        </DockPanel>
+    </Grid>
 </UserControl>

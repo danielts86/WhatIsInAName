@@ -11,8 +11,6 @@
         {
             this.InitializeComponent();
             var m = new MainViewModel();
-
-            var v = new VariableViewModel();
             DataContext = m;
         }
 

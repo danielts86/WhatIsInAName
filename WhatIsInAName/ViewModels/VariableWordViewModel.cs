@@ -28,13 +28,21 @@ namespace WhatIsInAName.ViewModels
         private string _value;
         public string Value
         {
-            get
-            {
-                return _value;
-            }
+            get => _value;
             private set
             {
                 _value = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
                 RaisePropertyChanged();
             }
         }

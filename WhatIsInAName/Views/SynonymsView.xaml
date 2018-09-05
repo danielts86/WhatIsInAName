@@ -47,8 +47,7 @@
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             DataContext="{TemplateBinding DataContext}"
                                             Background="{DynamicResource PrimaryHueLightBrush}"
-                                            Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
-                                            Padding="3">
+                                            Foreground="{DynamicResource PrimaryHueLightForegroundBrush}">
                                         <Button Content="{Binding Value}">
                                         </Button>
                                     </materialDesign:Card>

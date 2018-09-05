@@ -24,7 +24,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Name="MainGrid">
+    <Grid Name="MainGrid"
+          Margin="2,0,2,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="65"/>
             <RowDefinition />

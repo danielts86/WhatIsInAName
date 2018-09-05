@@ -73,6 +73,8 @@
     <Compile Include="ViewModels\SynonymViewModel.cs" />
     <Compile Include="ViewModels\VariableViewModel.cs" />
     <Compile Include="ViewModels\VariableWordNavigationViewModel.cs" />
+    <Compile Include="ViewModels\VariableWordNavigationsViewModel.cs" />
+    <Compile Include="ViewModels\VariableWordsViewModel.cs" />
     <Compile Include="ViewModels\VariableWordViewModel.cs" />
     <Compile Include="Views\SynonymsView.xaml.cs">
       <DependentUpon>SynonymsView.xaml</DependentUpon>
