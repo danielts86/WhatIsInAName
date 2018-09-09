@@ -1,4 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using System;
+using System.Windows.Input;
 using System.Windows.Media;
 using WhatIsInAName.Infrastructure.Models;
 

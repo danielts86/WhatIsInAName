@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A780BEF7-16B4-40A8-B012-F6FF3A2C8960}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
+		buildVsix.ps1 = buildVsix.ps1
 		CHANGELOG.md = CHANGELOG.md
 		README.md = README.md
 	EndProjectSection

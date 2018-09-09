@@ -48,7 +48,8 @@
                                             DataContext="{TemplateBinding DataContext}"
                                             Background="{DynamicResource PrimaryHueLightBrush}"
                                             Foreground="{DynamicResource PrimaryHueLightForegroundBrush}">
-                                        <Button Content="{Binding Value}">
+                                        <Button Content="{Binding Value}"
+                                                Command="{Binding DataContext.BrowseCommand, RelativeSource={RelativeSource AncestorType=ListView}}">
                                         </Button>
                                     </materialDesign:Card>
                                 </Grid>

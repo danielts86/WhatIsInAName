@@ -14,10 +14,6 @@ namespace WhatIsInAName.ViewModels
             foreach (var variableWord in variableWords)
             {
                 var variableWordNavigation = new VariableWordNavigation(variableWord);
-                variableWordNavigation.AddRange(new[] {
-                new VariableWord("Next1", new Word { SingularValue = "Next1" } ),
-                new VariableWord("Next2", new Word { SingularValue = "Next2" } ) });
-
                 var variableWordNavigationViewModel = new VariableWordNavigationViewModel(variableWordNavigation);
                 Items.Add(variableWordNavigationViewModel);
             }
