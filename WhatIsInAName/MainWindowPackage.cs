@@ -76,9 +76,6 @@ namespace WhatIsInAName
 
             _manualAssemblyResolver = new ManualAssemblyResolver("MaterialDesignColors.dll", "MaterialDesignThemes.Wpf.dll");
 
-            var s = new SpellService();
-            s.Get();
-
             await MainWindowCommand.InitializeAsync(this);
         }
 

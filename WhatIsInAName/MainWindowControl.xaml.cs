@@ -3,14 +3,21 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls;
+    using WhatIsInAName.Infrastructure.Data;
     using WhatIsInAName.ViewModels;
 
     public partial class MainWindowControl : UserControl
     {
+        private readonly IDataRepository _dataRepository;
+
         public MainWindowControl()
         {
+            var _dataRepository = new SqlDataRepository();
+            //var r = s.Search(new System.Collections.Generic.List<string> { "process" });
+
             this.InitializeComponent();
-            var m = new MainViewModel();
+
+            var m = new MainViewModel(_dataRepository);
             DataContext = m;
         }
 

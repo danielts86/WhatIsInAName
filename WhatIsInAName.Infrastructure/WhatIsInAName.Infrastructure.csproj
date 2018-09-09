@@ -52,13 +52,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\IDataRepository.cs" />
+    <Compile Include="Data\SqlDataRepository.cs" />
     <Compile Include="ManualAssemblyResolver.cs" />
     <Compile Include="Models\Synonym.cs" />
+    <Compile Include="Models\Variable.cs" />
     <Compile Include="Models\VariableWord.cs" />
     <Compile Include="Models\VariableWordNavigation.cs" />
     <Compile Include="Models\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpellService.cs" />
+    <Compile Include="Thesaurus\Formatting.cs" />
+    <Compile Include="Thesaurus\LetterCaseStyles.cs" />
+    <Compile Include="Thesaurus\SpellService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="en_US.aff">

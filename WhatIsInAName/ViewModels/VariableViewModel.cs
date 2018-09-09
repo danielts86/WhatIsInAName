@@ -1,15 +1,14 @@
 ﻿using GalaSoft.MvvmLight;
-using System.Collections.Generic;
 using WhatIsInAName.Infrastructure.Models;
 
 namespace WhatIsInAName.ViewModels
 {
     public class VariableViewModel : ViewModelBase
     {
-        public VariableViewModel(List<VariableWord> variableWords)
+        public VariableViewModel(Variable variable)
         {
-            VariableWords = new VariableWordsViewModel(variableWords);
-            VariableWordNavigations = new VariableWordNavigationsViewModel(variableWords);
+            VariableWords = new VariableWordsViewModel(variable.VariableWords);
+            VariableWordNavigations = new VariableWordNavigationsViewModel(variable.VariableWords);
             VariableWordNavigations.SelectItemChanged += VariableWordNavigationsSelectItemChanged;
         }
 
@@ -18,8 +17,26 @@ namespace WhatIsInAName.ViewModels
             VariableWords.SelectedItem = VariableWords.Items[index];
         }
 
-        public VariableWordsViewModel VariableWords { get; set; }
+        private VariableWordsViewModel _variableWords;
+        public VariableWordsViewModel VariableWords
+        {
+            get => _variableWords;
+            set
+            {
+                _variableWords = value;
+                RaisePropertyChanged();
+            }
+        }
 
-        public VariableWordNavigationsViewModel VariableWordNavigations { get; set; }
+        private VariableWordNavigationsViewModel _variableWordNavigations;
+        public VariableWordNavigationsViewModel VariableWordNavigations
+        {
+            get => _variableWordNavigations;
+            set
+            {
+                _variableWordNavigations = value;
+                RaisePropertyChanged();
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace WhatIsInAName.Infrastructure
+namespace WhatIsInAName.Infrastructure.Thesaurus
 {
     public class SpellService
     {

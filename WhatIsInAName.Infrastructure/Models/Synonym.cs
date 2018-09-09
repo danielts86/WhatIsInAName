@@ -6,7 +6,7 @@
 
         public string Value { get; set; }
 
-        public int WordId { get; set; }
+        public int? WordId { get; set; }
 
         public int Similarity { get; set; }
 

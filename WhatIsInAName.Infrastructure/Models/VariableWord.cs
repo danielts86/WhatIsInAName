@@ -2,6 +2,14 @@
 {
     public class VariableWord
     {
-        public Word Word { get; set; }
+        public VariableWord(string defualtWord, Word word)
+        {
+            DefualtWord = defualtWord;
+            Word = word;
+        }
+
+        public string DefualtWord { get; private set; }
+
+        public Word Word { get; private set; }
     }
 }

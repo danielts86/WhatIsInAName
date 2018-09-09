@@ -4,6 +4,11 @@ namespace WhatIsInAName.Infrastructure.Models
 {
     public class Word
     {
+        public Word()
+        {
+            Synonyms = new List<Synonym>();
+        }
+
         public int Id { get; set; }
 
         public string PluralValue { get; set; }

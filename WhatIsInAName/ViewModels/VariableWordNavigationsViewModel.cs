@@ -15,8 +15,8 @@ namespace WhatIsInAName.ViewModels
             {
                 var variableWordNavigation = new VariableWordNavigation(variableWord);
                 variableWordNavigation.AddRange(new[] {
-                new VariableWord { Word = new Word { SingularValue = "Next1" } },
-                new VariableWord { Word = new Word { SingularValue = "Next2" } } });
+                new VariableWord("Next1", new Word { SingularValue = "Next1" } ),
+                new VariableWord("Next2", new Word { SingularValue = "Next2" } ) });
 
                 var variableWordNavigationViewModel = new VariableWordNavigationViewModel(variableWordNavigation);
                 Items.Add(variableWordNavigationViewModel);
@@ -48,8 +48,12 @@ namespace WhatIsInAName.ViewModels
                 }
 
                 _selectedItem = value;
-                _selectedItem.IsSelected = true;
-                OnSelectItemChanged();
+                if (_selectedItem != null)
+                {
+                    _selectedItem.IsSelected = true;
+                    OnSelectItemChanged();
+                }
+
                 RaisePropertyChanged();
             }
         }
