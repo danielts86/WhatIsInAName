@@ -32,7 +32,7 @@
                 Command="{Binding PrevCommand}"
                 materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
                 materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}"
-                IsEnabled="{Binding IsHasPrev}">
+                IsEnabled="{Binding VariableWordNavigation.IsHasPrev}">
                 <materialDesign:PackIcon
                             Height="15"
                             Width="15">
@@ -47,7 +47,7 @@
 
             <TextBlock Grid.Column="1"
                        Focusable="True"
-                       Text="{Binding Current.Value, Mode=OneWay}"
+                       Text="{Binding VariableWordNavigation.Current.Word.SingularValue, Mode=OneWay}"
                        Margin="2"
                        VerticalAlignment="Center">
                 <TextBlock.Style>
@@ -75,7 +75,7 @@
                     Command="{Binding NextCommand}"
                     materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
                     materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}"
-                    IsEnabled="{Binding IsHasNext}">
+                    IsEnabled="{Binding VariableWordNavigation.IsHasNext}">
                 <materialDesign:PackIcon
                             Height="15"
                             Width="15">

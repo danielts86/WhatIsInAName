@@ -39,5 +39,13 @@ namespace WhatIsInAName.ViewModels
                 default: return new SolidColorBrush(Colors.Green);
             }
         }
+
+        public Synonym Model
+        {
+            get
+            {
+                return _synonym;
+            }
+        }
     }
 }

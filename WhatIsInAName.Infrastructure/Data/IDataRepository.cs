@@ -6,5 +6,7 @@ namespace WhatIsInAName.Infrastructure.Data
     public interface IDataRepository
     {
         Variable Search(string input);
+
+        IEnumerable<Synonym> GetSynonyms(int wordId);
     }
 }

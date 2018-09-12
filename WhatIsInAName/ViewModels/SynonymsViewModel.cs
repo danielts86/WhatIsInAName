@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using WhatIsInAName.Infrastructure.Models;
 
 namespace WhatIsInAName.ViewModels
 {
@@ -11,7 +12,7 @@ namespace WhatIsInAName.ViewModels
         public SynonymsViewModel()
         {
             Synonyms = new ObservableCollection<SynonymViewModel>();
-            BrowseCommand = new RelayCommand(Browse);
+            BrowseCommand = new RelayCommand<SynonymViewModel>(Browse);
         }
 
         public SynonymsViewModel(IEnumerable<SynonymViewModel> synonyms) : this()
@@ -36,19 +37,23 @@ namespace WhatIsInAName.ViewModels
         public ObservableCollection<SynonymViewModel> Synonyms { get; set; }
 
         public ICommand BrowseCommand { get; set; }
-        private void Browse()
+        private void Browse(SynonymViewModel synonym)
         {
-            
+            if (synonym == null)
+            {
+                return;
+            }
+            OnSynonymChosened(synonym.Model);
         }
 
-        //public event EventHandler<int> SynonymBrowsed;
-        //private void OnSelectItemChanged()
-        //{
-        //    var handler = SynonymBrowsed;
-        //    if (handler != null)
-        //    {
-        //        handler(this, );
-        //    }
-        //}
+        public event EventHandler<Synonym> SynonymChosen;
+        private void OnSynonymChosened(Synonym synonym)
+        {
+            var handler = SynonymChosen;
+            if (handler != null)
+            {
+               handler(this, synonym);
+            }
+        }
     }
 }

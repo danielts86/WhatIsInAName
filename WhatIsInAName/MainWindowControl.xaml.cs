@@ -12,7 +12,7 @@
 
         public MainWindowControl()
         {
-            var _dataRepository = new SqlDataRepository();
+            _dataRepository = new SqlDataRepository();
             //var r = s.Search(new System.Collections.Generic.List<string> { "process" });
 
             this.InitializeComponent();

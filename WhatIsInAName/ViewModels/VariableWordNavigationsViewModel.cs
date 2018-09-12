@@ -8,15 +8,12 @@ namespace WhatIsInAName.ViewModels
 {
     public class VariableWordNavigationsViewModel : ViewModelBase
     {
-        public VariableWordNavigationsViewModel(List<VariableWord> variableWords)
+        public VariableWordNavigationsViewModel(VariableWord variableWord)
         {
             Items = new ObservableCollection<VariableWordNavigationViewModel>();
-            foreach (var variableWord in variableWords)
-            {
-                var variableWordNavigation = new VariableWordNavigation(variableWord);
-                var variableWordNavigationViewModel = new VariableWordNavigationViewModel(variableWordNavigation);
-                Items.Add(variableWordNavigationViewModel);
-            }
+            var variableWordNavigation = new VariableWordNavigation(variableWord);
+            var variableWordNavigationViewModel = new VariableWordNavigationViewModel(variableWordNavigation);
+            Items.Add(variableWordNavigationViewModel);
             SelectedItem = Items[0];
         }
 

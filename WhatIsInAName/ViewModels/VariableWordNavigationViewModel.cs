@@ -22,8 +22,8 @@ namespace WhatIsInAName.ViewModels
             Color = new SolidColorBrush(Colors.Blue);
         }
 
-        private VariableWordViewModel _current;
-        public VariableWordViewModel Current
+        private VariableWord _current;
+        public VariableWord Current
         {
             get => _current;
             set
@@ -107,7 +107,7 @@ namespace WhatIsInAName.ViewModels
 
         private void Navigatie()
         {
-            Current = new VariableWordViewModel(_variableWordNavigation.Current);
+            Current =_variableWordNavigation.Current;
             IsHasPrev = _variableWordNavigation.IsHasPrev;
             IsHasNext = _variableWordNavigation.IsHasNext;
         }

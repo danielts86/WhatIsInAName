@@ -54,8 +54,8 @@
             <ListView
                   DockPanel.Dock="Top"
                   VerticalAlignment="Top"
-                  ItemsSource="{Binding VariableWordNavigations.Items, Mode=OneWay}"
-                  SelectedItem="{Binding VariableWordNavigations.SelectedItem}"
+                  ItemsSource="{Binding VariableWords.Items, Mode=OneWay}"
+                  SelectedItem="{Binding VariableWords.SelectedItem}"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.Resources>
                     <Style TargetType="GridViewColumnHeader">
@@ -105,9 +105,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            
             <local:SynonymsView 
                 DockPanel.Dock="Bottom"
-                DataContext="{Binding VariableWordNavigations.SelectedItem.Current.Synonyms}"/>
+                DataContext="{Binding VariableWords.SelectedItem.Synonyms}"/>
         </DockPanel>
     </Grid>
 </UserControl>

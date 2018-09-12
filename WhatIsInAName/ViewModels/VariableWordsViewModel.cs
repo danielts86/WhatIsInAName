@@ -2,17 +2,21 @@
 using System.Collections.ObjectModel;
 using WhatIsInAName.Infrastructure.Models;
 using GalaSoft.MvvmLight;
+using WhatIsInAName.Infrastructure.Data;
 
 namespace WhatIsInAName.ViewModels
 {
     public class VariableWordsViewModel : ViewModelBase
     {
-        public VariableWordsViewModel(List<VariableWord> variableWords)
+        private readonly IDataRepository _dataRepository;
+
+        public VariableWordsViewModel(List<VariableWord> variableWords, IDataRepository dataRepository)
         {
+            _dataRepository = dataRepository;
             Items = new ObservableCollection<VariableWordViewModel>();
             foreach (var variableWord in variableWords)
             {
-                var variableWordViewModel = new VariableWordViewModel(variableWord);
+                var variableWordViewModel = new VariableWordViewModel(variableWord, _dataRepository);
                 Items.Add(variableWordViewModel);
             }
             SelectedItem = Items[0];

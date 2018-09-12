@@ -73,7 +73,7 @@ namespace WhatIsInAName.Infrastructure.Data
                                         variableWord.Word.Synonyms.Add(s);
                                     }
                                 }
-                                
+
                             }
                         }
                     }
@@ -81,6 +81,42 @@ namespace WhatIsInAName.Infrastructure.Data
             }
 
             return variable;
+        }
+
+        public IEnumerable<Synonym> GetSynonyms(int wordId)
+        {
+            var variable = new Variable();
+            using (var con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("stp_GetSynonyms", con) { CommandType = CommandType.StoredProcedure })
+                {
+                    var parameter = new SqlParameter("@WordId", SqlDbType.Int);
+                    parameter.Value = wordId;
+
+                    cmd.Parameters.Add(parameter);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var synonym = new Synonym
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Value = reader["Value"].ToString(),
+                                WordId = reader["MatchWordId"] == DBNull.Value 
+                                            ? (int?)null
+                                            : Convert.ToInt32(reader["MatchWordId"]),
+                                Similarity = Convert.ToInt32(reader["Similarity"]),
+                                Rank = Convert.ToInt32(reader["Rank"])
+                            };
+                            yield return synonym;
+                        }
+                    }
+
+                }
+            }
         }
     }
 }

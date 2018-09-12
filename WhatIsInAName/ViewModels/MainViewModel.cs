@@ -74,7 +74,7 @@ namespace WhatIsInAName.ViewModels
         private void Search()
         {
             var variable = _dataRepository.Search(UserSearch);
-            Variable = new VariableViewModel(variable);
+            Variable = new VariableViewModel(variable, _dataRepository);
         }
     }
 }
