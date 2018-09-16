@@ -1,7 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
+using WhatIsInAName.Infrastructure.Data;
 using WhatIsInAName.Infrastructure.Models;
 
 namespace WhatIsInAName.ViewModels
@@ -9,13 +12,26 @@ namespace WhatIsInAName.ViewModels
     public class VariableWordNavigationViewModel : ViewModelBase
     {
         private readonly VariableWordNavigation _variableWordNavigation;
+        private readonly IDataRepository _dataRepository;
 
-        public VariableWordNavigationViewModel(VariableWordNavigation variableWordNavigation)
+        public VariableWordNavigationViewModel(VariableWordNavigation variableWordNavigation, IDataRepository dataRepository)
         {
             _variableWordNavigation = variableWordNavigation;
+            _dataRepository = dataRepository;
 
             PrevCommand = new RelayCommand(Prev);
             NextCommand = new RelayCommand(Next);
+
+            var synonyms = _variableWordNavigation.Current.Word.Synonyms;
+            if (synonyms == null)
+            {
+                Synonyms = new SynonymsViewModel();
+            }
+            else
+            {
+                Synonyms = new SynonymsViewModel(synonyms.Select(s => new SynonymViewModel(s)));
+            }
+            Synonyms.SynonymChosen += SynonymChosend;
 
             Navigatie();
 
@@ -81,6 +97,8 @@ namespace WhatIsInAName.ViewModels
             }
         }
 
+        public SynonymsViewModel Synonyms { get; set; }
+
         public SolidColorBrush Color
         {
             get => _color;
@@ -90,7 +108,6 @@ namespace WhatIsInAName.ViewModels
                 RaisePropertyChanged();
             }
         }
-
         private SolidColorBrush _color;
 
         private void Prev()
@@ -107,9 +124,36 @@ namespace WhatIsInAName.ViewModels
 
         private void Navigatie()
         {
-            Current =_variableWordNavigation.Current;
+            Current = _variableWordNavigation.Current;
             IsHasPrev = _variableWordNavigation.IsHasPrev;
             IsHasNext = _variableWordNavigation.IsHasNext;
+        }
+
+        private void SynonymChosend(object sender, Synonym synonym)
+        {
+            var newVariableWord = new VariableWord("", new Word
+            {
+                Id = synonym.WordId.HasValue
+                        ? synonym.WordId.Value
+                        : 0,
+                SingularValue = synonym.Value,
+            });
+
+            _variableWordNavigation.Add(newVariableWord);
+            _variableWordNavigation.Next();
+            Navigatie();
+
+            if (!synonym.WordId.HasValue)
+            {
+                return;
+            }
+
+            var synonyms = _dataRepository.GetSynonyms(synonym.WordId.Value);
+            if (synonym != null)
+            {
+                Synonyms.Reload(synonyms.Select(s => new SynonymViewModel(s)));
+            }
+
         }
     }
 }

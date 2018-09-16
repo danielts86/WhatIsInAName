@@ -11,7 +11,7 @@ namespace WhatIsInAName.ViewModels
         public VariableViewModel(Variable variable, IDataRepository dataRepository)
         {
             _dataRepository = dataRepository;
-            VariableWords = new VariableWordsViewModel(variable.VariableWords, _dataRepository);    
+            VariableWords = new VariableWordsViewModel(variable.VariableWords, _dataRepository);
         }
 
         private VariableWordsViewModel _variableWords;

@@ -105,10 +105,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            
+
             <local:SynonymsView 
                 DockPanel.Dock="Bottom"
-                DataContext="{Binding VariableWords.SelectedItem.Synonyms}"/>
+                DataContext="{Binding VariableWords.SelectedItem.VariableWordNavigation.Synonyms}"/>
         </DockPanel>
     </Grid>
 </UserControl>

@@ -29,7 +29,7 @@
                 Height="20"
                 Width="20"
                 Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                Command="{Binding PrevCommand}"
+                Command="{Binding VariableWordNavigation.PrevCommand}"
                 materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
                 materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}"
                 IsEnabled="{Binding VariableWordNavigation.IsHasPrev}">
@@ -72,7 +72,7 @@
                     Height="20"
                     Width="20"
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
-                    Command="{Binding NextCommand}"
+                    Command="{Binding VariableWordNavigation.NextCommand}"
                     materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
                     materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}"
                     IsEnabled="{Binding VariableWordNavigation.IsHasNext}">

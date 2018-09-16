@@ -52,7 +52,7 @@ namespace WhatIsInAName.ViewModels
             var handler = SynonymChosen;
             if (handler != null)
             {
-               handler(this, synonym);
+                handler(this, synonym);
             }
         }
     }

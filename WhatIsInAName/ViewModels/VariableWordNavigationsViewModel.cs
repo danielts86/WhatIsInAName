@@ -10,11 +10,11 @@ namespace WhatIsInAName.ViewModels
     {
         public VariableWordNavigationsViewModel(VariableWord variableWord)
         {
-            Items = new ObservableCollection<VariableWordNavigationViewModel>();
-            var variableWordNavigation = new VariableWordNavigation(variableWord);
-            var variableWordNavigationViewModel = new VariableWordNavigationViewModel(variableWordNavigation);
-            Items.Add(variableWordNavigationViewModel);
-            SelectedItem = Items[0];
+            //Items = new ObservableCollection<VariableWordNavigationViewModel>();
+            //var variableWordNavigation = new VariableWordNavigation(variableWord);
+            //var variableWordNavigationViewModel = new VariableWordNavigationViewModel(variableWordNavigation);
+            //Items.Add(variableWordNavigationViewModel);
+            //SelectedItem = Items[0];
         }
 
         public event EventHandler<int> SelectItemChanged;

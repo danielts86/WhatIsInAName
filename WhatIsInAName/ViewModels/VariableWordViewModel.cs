@@ -16,23 +16,12 @@ namespace WhatIsInAName.ViewModels
         public VariableWordViewModel(VariableWord variableWord, IDataRepository dataRepository)
         {
             _variableWord = variableWord;
-            _dataRepository= dataRepository;
+            _dataRepository = dataRepository;
 
             Value = _variableWord.Word.SingularValue;
 
             _variableWordNavigation = new VariableWordNavigation(_variableWord);
-            VariableWordNavigation = new VariableWordNavigationViewModel(_variableWordNavigation);
-
-            var synonyms = variableWord.Word.Synonyms;
-            if (synonyms == null)
-            {
-                Synonyms = new SynonymsViewModel();
-            }
-            else
-            {
-                Synonyms = new SynonymsViewModel(synonyms.Select(s => new SynonymViewModel(s)));
-            }
-            Synonyms.SynonymChosen += SynonymChosend;
+            VariableWordNavigation = new VariableWordNavigationViewModel(_variableWordNavigation, _dataRepository);
         }
 
         private string _value;
@@ -58,23 +47,5 @@ namespace WhatIsInAName.ViewModels
         }
 
         public VariableWordNavigationViewModel VariableWordNavigation { get; set; }
-
-        public SynonymsViewModel Synonyms { get; set; }
-
-        private void SynonymChosend(object sender, Synonym synonym)
-        {
-            var newVariableWord = new VariableWord("", new Word
-            {
-                                
-            });
-            
-            if (!synonym.WordId.HasValue)
-            {
-                return;
-            }
-
-            List<Synonym> synonyms = _dataRepository.GetSynonyms(synonym.WordId.Value).ToList();
-
-        }
     }
 }
