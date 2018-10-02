@@ -18,7 +18,7 @@ namespace WhatIsInAName.ViewModels
             _variableWord = variableWord;
             _dataRepository = dataRepository;
 
-            Value = _variableWord.Word.SingularValue;
+            Value = _variableWord.SingularValue;
 
             _variableWordNavigation = new VariableWordNavigation(_variableWord);
             VariableWordNavigation = new VariableWordNavigationViewModel(_variableWordNavigation, _dataRepository);

@@ -47,7 +47,7 @@
 
             <TextBlock Grid.Column="1"
                        Focusable="True"
-                       Text="{Binding VariableWordNavigation.Current.Word.SingularValue, Mode=OneWay}"
+                       Text="{Binding VariableWordNavigation.Current.SingularValue, Mode=OneWay}"
                        Margin="2"
                        VerticalAlignment="Center">
                 <TextBlock.Style>
@@ -88,8 +88,5 @@
                 </materialDesign:PackIcon>
             </Button>
         </Grid>
-
-        <!--<materialDesign:Underline 
-                                  IsActive="{Binding IsFocused}"/>-->
     </StackPanel>
 </UserControl>

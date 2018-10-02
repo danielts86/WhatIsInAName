@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using WhatIsInAName.Infrastructure.Models;
 using GalaSoft.MvvmLight;
 using WhatIsInAName.Infrastructure.Data;
+using System.Linq;
 
 namespace WhatIsInAName.ViewModels
 {
@@ -39,6 +40,12 @@ namespace WhatIsInAName.ViewModels
                 _selectedItem.IsSelected = true;
                 RaisePropertyChanged();
             }
+        }
+
+        public string GetTransfromVariable()
+        {
+            var transfromVariable = string.Join("", Items.Select(w => w.VariableWordNavigation.Current.SingularValue));
+            return transfromVariable;
         }
     }
 }

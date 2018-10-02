@@ -22,7 +22,7 @@ namespace WhatIsInAName.ViewModels
             PrevCommand = new RelayCommand(Prev);
             NextCommand = new RelayCommand(Next);
 
-            var synonyms = _variableWordNavigation.Current.Word.Synonyms;
+            var synonyms = _variableWordNavigation.Current.Synonyms;
             if (synonyms == null)
             {
                 Synonyms = new SynonymsViewModel();
@@ -131,13 +131,13 @@ namespace WhatIsInAName.ViewModels
 
         private void SynonymChosend(object sender, Synonym synonym)
         {
-            var newVariableWord = new VariableWord("", new Word
+            var newVariableWord = new VariableWord("")
             {
                 Id = synonym.WordId.HasValue
                         ? synonym.WordId.Value
                         : 0,
                 SingularValue = synonym.Value,
-            });
+            };
 
             _variableWordNavigation.Add(newVariableWord);
             _variableWordNavigation.Next();

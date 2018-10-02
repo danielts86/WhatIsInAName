@@ -43,14 +43,13 @@ namespace WhatIsInAName.Infrastructure.Data
                             while (reader.Read())
                             {
                                 var defualtWord = reader["InputValue"].ToString();
-                                var word = new Word
+                                var variableWord = new VariableWord(defualtWord)
                                 {
                                     Id = Convert.ToInt32(reader["Id"]),
                                     SingularValue = reader["SingularValue"].ToString(),
                                     PluralValue = reader["SingularValue"].ToString(),
                                     Definition = reader["Definition"].ToString()
                                 };
-                                var variableWord = new VariableWord(defualtWord, word);
                                 variable.VariableWords.Add(variableWord);
                             }
 
@@ -67,10 +66,10 @@ namespace WhatIsInAName.Infrastructure.Data
                                         Rank = Convert.ToInt32(reader["Rank"])
                                     };
 
-                                    var variableWord = variable.VariableWords.FirstOrDefault(v => v.Word.Id == s.WordId);
+                                    var variableWord = variable.VariableWords.FirstOrDefault(v => v.Id == s.WordId);
                                     if (variableWord != null)
                                     {
-                                        variableWord.Word.Synonyms.Add(s);
+                                        variableWord.Synonyms.Add(s);
                                     }
                                 }
 

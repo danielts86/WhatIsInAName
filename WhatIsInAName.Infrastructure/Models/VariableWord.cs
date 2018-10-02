@@ -1,15 +1,12 @@
 ﻿namespace WhatIsInAName.Infrastructure.Models
 {
-    public class VariableWord
+    public class VariableWord : Word
     {
-        public VariableWord(string defualtWord, Word word)
+        public VariableWord(string defualtWord) : base()
         {
             DefualtWord = defualtWord;
-            Word = word;
         }
 
         public string DefualtWord { get; private set; }
-
-        public Word Word { get; private set; }
     }
 }

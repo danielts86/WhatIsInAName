@@ -35,46 +35,53 @@
               VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="71.5" />
+                <ColumnDefinition Width="71.5"/>
             </Grid.ColumnDefinitions>
             <TextBox    Grid.Column="0"
                         Text="{Binding UserSearch}"
                         Style="{StaticResource MaterialDesignTextFieldBoxTextBox}"
+                        Background="Transparent"
                         VerticalAlignment="Top"
                         TextWrapping="Wrap"
                         materialDesign:HintAssist.Hint="Variable" />
-            <Button Grid.Column="1"
+            <Border Grid.Column="1"
+                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
+
+                <Button 
                     Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                     Command="{Binding SearchCommand}"
                     materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSaving}"
                     materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}">
-                <materialDesign:PackIcon
+                    <materialDesign:PackIcon
                             Height="32"
                             Width="32">
-                    <materialDesign:PackIcon.Style>
-                        <Style TargetType="materialDesign:PackIcon"
+                        <materialDesign:PackIcon.Style>
+                            <Style TargetType="materialDesign:PackIcon"
                                     BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                            <Setter Property="Kind" Value="magnify" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsSaveComplete}" Value="True">
-                                    <Setter Property="Kind" Value="Check" />
-                                    <DataTrigger.EnterActions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation
+                                <Setter Property="Kind" Value="magnify" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSaveComplete}" Value="True">
+                                        <Setter Property="Kind" Value="Check" />
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
                                                         Storyboard.TargetProperty="Opacity"
                                                         From="0"
                                                         To="1"
                                                         Duration="0:0:0.8" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </DataTrigger.EnterActions>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </materialDesign:PackIcon.Style>
-                </materialDesign:PackIcon>
-            </Button>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.EnterActions>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </materialDesign:PackIcon.Style>
+                    </materialDesign:PackIcon>
+                </Button>
+
+            </Border>
+            
         </Grid>
 
         <Views:VariableView Grid.Row="1"
