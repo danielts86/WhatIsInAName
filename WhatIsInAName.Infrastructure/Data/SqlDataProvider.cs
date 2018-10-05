@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using WhatIsInAName.Infrastructure.Entities;
 using WhatIsInAName.Infrastructure.Models;
-using WhatIsInAName.Infrastructure.Thesaurus;
 
 namespace WhatIsInAName.Infrastructure.Data
 {
-    public class SqlDataRepository : IDataRepository
+    internal class SqlDataProvider : IDataProvider
     {
         const string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WhatInTheName;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-        public Variable Search(string input)
+        public IEnumerable<VariableWord> GetVariableWords(List<string> words)
         {
-            var words = Formatting.SperateVariable(input);
+            var variableWords = new List<VariableWord>();
 
-            var variable = new Variable();
             using (var con = new SqlConnection(connectionString))
             {
                 con.Open();
@@ -50,7 +49,7 @@ namespace WhatIsInAName.Infrastructure.Data
                                     PluralValue = reader["SingularValue"].ToString(),
                                     Definition = reader["Definition"].ToString()
                                 };
-                                variable.VariableWords.Add(variableWord);
+                                variableWords.Add(variableWord);
                             }
 
                             if (reader.NextResult())
@@ -66,7 +65,7 @@ namespace WhatIsInAName.Infrastructure.Data
                                         Rank = Convert.ToInt32(reader["Rank"])
                                     };
 
-                                    var variableWord = variable.VariableWords.FirstOrDefault(v => v.Id == s.WordId);
+                                    var variableWord = variableWords.FirstOrDefault(v => v.Id == s.WordId);
                                     if (variableWord != null)
                                     {
                                         variableWord.Synonyms.Add(s);
@@ -79,7 +78,7 @@ namespace WhatIsInAName.Infrastructure.Data
                 }
             }
 
-            return variable;
+            return variableWords;
         }
 
         public IEnumerable<Synonym> GetSynonyms(int wordId)
@@ -104,7 +103,7 @@ namespace WhatIsInAName.Infrastructure.Data
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
                                 Value = reader["Value"].ToString(),
-                                WordId = reader["MatchWordId"] == DBNull.Value 
+                                WordId = reader["MatchWordId"] == DBNull.Value
                                             ? (int?)null
                                             : Convert.ToInt32(reader["MatchWordId"]),
                                 Similarity = Convert.ToInt32(reader["Similarity"]),

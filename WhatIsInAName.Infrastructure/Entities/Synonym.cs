@@ -1,4 +1,4 @@
-﻿namespace WhatIsInAName.Infrastructure.Models
+﻿namespace WhatIsInAName.Infrastructure.Entities
 {
     public class Synonym
     {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WhatIsInAName.Infrastructure.Thesaurus;
 
 namespace WhatIsInAName.Infrastructure.Models
 {
@@ -10,5 +11,7 @@ namespace WhatIsInAName.Infrastructure.Models
         }
 
         public List<VariableWord> VariableWords { get; set; }
+
+        public LetterCaseStyles LetterCaseStyle { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using WhatIsInAName.Infrastructure.Models;
+using WhatIsInAName.Infrastructure.Entities;
 
 namespace WhatIsInAName.ViewModels
 {

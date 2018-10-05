@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using WhatIsInAName.Infrastructure;
 using WhatIsInAName.Infrastructure.Data;
 using WhatIsInAName.Infrastructure.Models;
 
@@ -11,17 +12,17 @@ namespace WhatIsInAName.ViewModels
     {
         private VariableWord _variableWord;
         private VariableWordNavigation _variableWordNavigation;
-        private readonly IDataRepository _dataRepository;
+        private readonly IRepository _repository;
 
-        public VariableWordViewModel(VariableWord variableWord, IDataRepository dataRepository)
+        public VariableWordViewModel(VariableWord variableWord, IRepository dataRepository)
         {
             _variableWord = variableWord;
-            _dataRepository = dataRepository;
+            _repository = dataRepository;
 
             Value = _variableWord.SingularValue;
 
             _variableWordNavigation = new VariableWordNavigation(_variableWord);
-            VariableWordNavigation = new VariableWordNavigationViewModel(_variableWordNavigation, _dataRepository);
+            VariableWordNavigation = new VariableWordNavigationViewModel(_variableWordNavigation, _repository);
         }
 
         private string _value;

@@ -3,19 +3,19 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.Windows;
 using System.Windows.Input;
-using WhatIsInAName.Infrastructure.Data;
+using WhatIsInAName.Infrastructure;
 using WhatIsInAName.Infrastructure.Models;
 
 namespace WhatIsInAName.ViewModels
 {
     public class VariableViewModel : ViewModelBase
     {
-        private readonly IDataRepository _dataRepository;
+        private readonly IRepository _repository;
 
-        public VariableViewModel(Variable variable, IDataRepository dataRepository)
+        public VariableViewModel(Variable variable, IRepository dataRepository)
         {
-            _dataRepository = dataRepository;
-            VariableWords = new VariableWordsViewModel(variable.VariableWords, _dataRepository);
+            _repository = dataRepository;
+            VariableWords = new VariableWordsViewModel(variable.VariableWords, _repository);
             CopyToClipBoardTransfromVaraibleCommand = new RelayCommand(CopyToClipBoardTransfromVaraible);
         }
 
@@ -37,6 +37,5 @@ namespace WhatIsInAName.ViewModels
             var transfromVariable = VariableWords.GetTransfromVariable();
             Clipboard.SetText(transfromVariable);
         }
-
     }
 }

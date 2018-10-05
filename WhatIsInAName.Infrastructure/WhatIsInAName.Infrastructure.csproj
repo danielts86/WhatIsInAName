@@ -52,18 +52,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\IDataRepository.cs" />
-    <Compile Include="Data\SqlDataRepository.cs" />
+    <Compile Include="Data\IDataProvider.cs" />
+    <Compile Include="Data\SqlDataProvider.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="ManualAssemblyResolver.cs" />
-    <Compile Include="Models\Synonym.cs" />
+    <Compile Include="Entities\Synonym.cs" />
     <Compile Include="Models\Variable.cs" />
     <Compile Include="Models\VariableWord.cs" />
     <Compile Include="Models\VariableWordNavigation.cs" />
-    <Compile Include="Models\Word.cs" />
+    <Compile Include="Entities\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="Thesaurus\Formatting.cs" />
+    <Compile Include="Thesaurus\ISpellService.cs" />
     <Compile Include="Thesaurus\LetterCaseStyles.cs" />
-    <Compile Include="Thesaurus\SpellService.cs" />
+    <Compile Include="Thesaurus\HunspellSpellService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="en_US.aff">

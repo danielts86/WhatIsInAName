@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
-using WhatIsInAName.Infrastructure.Data;
+using WhatIsInAName.Infrastructure;
+using WhatIsInAName.Infrastructure.Entities;
 using WhatIsInAName.Infrastructure.Models;
 
 namespace WhatIsInAName.ViewModels
@@ -12,12 +13,12 @@ namespace WhatIsInAName.ViewModels
     public class VariableWordNavigationViewModel : ViewModelBase
     {
         private readonly VariableWordNavigation _variableWordNavigation;
-        private readonly IDataRepository _dataRepository;
+        private readonly IRepository _repository;
 
-        public VariableWordNavigationViewModel(VariableWordNavigation variableWordNavigation, IDataRepository dataRepository)
+        public VariableWordNavigationViewModel(VariableWordNavigation variableWordNavigation, IRepository dataRepository)
         {
             _variableWordNavigation = variableWordNavigation;
-            _dataRepository = dataRepository;
+            _repository = dataRepository;
 
             PrevCommand = new RelayCommand(Prev);
             NextCommand = new RelayCommand(Next);
@@ -148,7 +149,7 @@ namespace WhatIsInAName.ViewModels
                 return;
             }
 
-            var synonyms = _dataRepository.GetSynonyms(synonym.WordId.Value);
+            var synonyms = _repository.GetSynonyms(synonym.WordId.Value);
             if (synonym != null)
             {
                 Synonyms.Reload(synonyms.Select(s => new SynonymViewModel(s)));

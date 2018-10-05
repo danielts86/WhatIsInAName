@@ -1,45 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace WhatIsInAName.Infrastructure.Thesaurus
 {
-    public class Formatting
+    internal class Formatting
     {
-        public static List<string> SperateVariable(string variable)
+        public static LetterCaseStyles GetLetterCaseStyle(string input)
         {
-            if (string.IsNullOrEmpty(variable))
+            if (string.IsNullOrEmpty(input) || input.Contains(" "))
             {
-                return new List<string>();
+                return LetterCaseStyles.None;
             }
 
-            if (variable.Contains(" "))
-            {
-                throw new InvalidOperationException("Could not sperate varible if in contains spaces");
-            }
-
-            var letterCaseStyle = GetLetterCaseStyle(variable);
-            var result = FormatVariableByLetterCaseStyle(variable, letterCaseStyle);
-
-            return result;
-        }
-
-        private static LetterCaseStyles GetLetterCaseStyle(string variable)
-        {
-            if (variable.Contains("_"))
+            if (input.Contains("_"))
             {
                 return LetterCaseStyles.SnakeCase;
             }
 
-            if (variable.Contains("-"))
+            if (input.Contains("-"))
             {
                 return LetterCaseStyles.KebabCase;
             }
 
-            if (char.IsUpper(variable[0]))
+            if (char.IsUpper(input[0]))
             {
                 return LetterCaseStyles.PascalCase;
             }
@@ -47,15 +31,19 @@ namespace WhatIsInAName.Infrastructure.Thesaurus
             return LetterCaseStyles.CamelCase;
         }
 
-        private static List<string> FormatVariableByLetterCaseStyle(string variable, LetterCaseStyles letterCaseStyle)
+        public static List<string> SplitInputByLetterCaseStyle(string input, LetterCaseStyles letterCaseStyle)
         {
-            var format = new List<string>();
+            if (string.IsNullOrEmpty(input))
+            {
+                return new List<string>();
+            }
+
             switch (letterCaseStyle)
             {
                 case LetterCaseStyles.PascalCase:
-                    return FormatPascalOrCamelCase(variable);
+                    return SplitPascalOrCamelCase(input);
                 case LetterCaseStyles.CamelCase:
-                    var result = FormatPascalOrCamelCase(variable);
+                    var result = SplitPascalOrCamelCase(input);
                     var firstWord = result[0];
                     var firstChar = firstWord[0];
                     firstChar = char.ToLower(firstChar);
@@ -63,15 +51,16 @@ namespace WhatIsInAName.Infrastructure.Thesaurus
                     result[0] = firstWord;
                     return result;
                 case LetterCaseStyles.SnakeCase:
-                    return FormatUnderscore(variable);
+                    return SplitUnderscore(input);
                 case LetterCaseStyles.KebabCase:
-                    return FormatDash(variable);
+                    return SplitDash(input);
+                default:
+                    var splits = input.Split(new[] { ' ' });
+                    return splits.ToList();
             }
-
-            return format;
         }
 
-        private static List<string> FormatPascalOrCamelCase(string variable)
+        private static List<string> SplitPascalOrCamelCase(string variable)
         {
             var pascalCaseWordPartsRegex = new Regex(@"[\p{Lu}]?[\p{Ll}]+|[0-9]+[\p{Ll}]*|[\p{Lu}]+(?=[\p{Lu}][\p{Ll}]|[0-9]|\b)|[\p{Lo}]+",
                 RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.Compiled);
@@ -92,13 +81,13 @@ namespace WhatIsInAName.Infrastructure.Thesaurus
             return split.ToList();
         }
 
-        private static List<string> FormatUnderscore(string variable)
+        private static List<string> SplitUnderscore(string variable)
         {
             var split = variable.Split(new[] { '_' });
             return split.ToList();
         }
 
-        private static List<string> FormatDash(string variable)
+        private static List<string> SplitDash(string variable)
         {
             var split = variable.Split(new[] { '-' });
             return split.ToList();

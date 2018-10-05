@@ -1,4 +1,6 @@
-﻿namespace WhatIsInAName.Infrastructure.Models
+﻿using WhatIsInAName.Infrastructure.Entities;
+
+namespace WhatIsInAName.Infrastructure.Models
 {
     public class VariableWord : Word
     {
